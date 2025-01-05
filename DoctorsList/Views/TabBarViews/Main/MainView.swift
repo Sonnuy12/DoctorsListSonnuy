@@ -6,17 +6,47 @@
 //
 
 import SwiftUI
-
 struct MainView: View {
     @Binding var select: String
     @StateObject private var viewModel = MainViewModel()
-    @State private var searchText: String = ""  // Для хранения текста поиска
+    @State private var searchText: String = ""
     
     let columns = [GridItem(.flexible())]
     
     var body: some View {
         NavigationView {
             VStack {
+                // Кнопки сортировки
+                HStack {
+                    ForEach(SortType.allCases) { sort in
+                        Button(action: {
+                            viewModel.toggleSortDirection(for: sort)
+                        }) {
+                            HStack(spacing: 5) {
+                                Text(sort.rawValue)
+                                    .font(.system(size: 16))
+                                    .fontWeight(viewModel.sortType == sort ? .bold : .regular)
+                                    .foregroundColor(viewModel.sortType == sort ? .white : .red)
+                                if viewModel.sortType == sort {
+                                    Image(systemName: viewModel.isAscending ? "arrow.up" : "arrow.down")
+                                        .font(.system(size: 14))
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(viewModel.sortType == sort ? Color.red : Color.white)
+                            .cornerRadius(8)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.red, lineWidth: 1)
+                            )
+                        }
+                    }
+                }
+                .padding(.horizontal, 17)
+                .padding(.top, 10)
+                // Сетка докторов
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(viewModel.filteredDoctors) { user in
@@ -28,9 +58,6 @@ struct MainView: View {
             }
             .onAppear {
                 viewModel.fetchData()
-                let appearance = UISearchBar.appearance()
-                appearance.barTintColor = .cyan  // Цвет фона
-                appearance.isTranslucent = false
             }
             .searchable(text: $viewModel.searchText)
             .onSubmit(of: .search, {
@@ -38,32 +65,7 @@ struct MainView: View {
             })
             .background(Color.lightGray)
             .navigationTitle("Доктора")
-            
         }
     }
 }
-//struct MainView: View {
-//    @Binding var select: String
-//    @StateObject private var viewModel = MainViewModel()
-//    
-//    let columns = [GridItem(.flexible())]
-//    
-//    var body: some View {
-//        NavigationView {
-//            ScrollView {
-//                LazyVGrid(columns: columns, spacing: 20) {
-//                    ForEach(viewModel.users) { user in
-//                        DoctorCardView(user: user)
-//                    }
-//                }
-//                .padding()
-//            }
-//            .background(Color.lightGray)
-//            .navigationTitle("Доктора")
-//            .onAppear {
-//                viewModel.fetchData()
-//            }
-//        }
-//    }
-//}
 

@@ -9,10 +9,14 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        Text("Hello, ProfileView!")
+        ScrollView {
+            Text("Hello, ProfileView!")
+        }
+        .background(Color.lightGray)
     }
-}
 
-#Preview {
-    ProfileView()
 }
+//
+//#Preview {
+//    ProfileView()
+//}
