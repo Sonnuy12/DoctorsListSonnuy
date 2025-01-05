@@ -15,7 +15,7 @@ class MainViewModel: ObservableObject {
     
     var searchText: String = "" {
         didSet {
-            filterDoctor() 
+            filterDoctor()
         }
     }
     
@@ -29,6 +29,7 @@ class MainViewModel: ObservableObject {
             let data = try Data(contentsOf: url)
             let decodedResponse = try JSONDecoder().decode(Response.self, from: data)
             self.users = decodedResponse.record.data.users
+            self.filteredDoctors = users
         } catch {
             print("Error decoding JSON: \(error)")
         }
