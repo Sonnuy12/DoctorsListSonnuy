@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F232EC3F2D2ACF7200F07498 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = F232EC3E2D2ACF7200F07498 /* FSCalendar */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		F2D4F6052D2806FD0053A57C /* DoctorsList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoctorsList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F232EC3F2D2ACF7200F07498 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = DoctorsList;
 			packageProductDependencies = (
+				F232EC3E2D2ACF7200F07498 /* FSCalendar */,
 			);
 			productName = DoctorsList;
 			productReference = F2D4F6052D2806FD0053A57C /* DoctorsList.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = F2D4F5FC2D2806FD0053A57C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F232EC3D2D2ACF7200F07498 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F2D4F6062D2806FD0053A57C /* Products */;
 			projectDirPath = "";
@@ -324,6 +333,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F232EC3D2D2ACF7200F07498 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F232EC3E2D2ACF7200F07498 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F232EC3D2D2ACF7200F07498 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F2D4F5FD2D2806FD0053A57C /* Project object */;
 }

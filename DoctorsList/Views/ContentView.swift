@@ -13,7 +13,7 @@ struct ContentView: View {
     
     init() {
            UITabBar.setCustomAppearance(
-            backgroundColor: .green,
+            backgroundColor: .white,
             selectedColor: .red,
             unselectedColor: .darkGray
            )
@@ -51,7 +51,7 @@ struct ContentView: View {
                 }
                 .tag("ProfileView")
         }
-        .background(Color.indigo)
+//        .background(Color.indigo)
     }
 }
 
