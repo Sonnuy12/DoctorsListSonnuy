@@ -6,47 +6,27 @@
 //
 
 import SwiftUI
+
 struct MainView: View {
     @Binding var select: String
     @StateObject private var viewModel = MainViewModel()
-    @State private var searchText: String = ""
     
     let columns = [GridItem(.flexible())]
     
     var body: some View {
         NavigationView {
-            VStack {
-                // Кнопки сортировки
-                HStack {
-                    ForEach(SortType.allCases) { sort in
-                        Button(action: {
-                            viewModel.toggleSortDirection(for: sort)
-                        }) {
-                            HStack(spacing: 5) {
-                                Text(sort.rawValue)
-                                    .font(.system(size: 16))
-                                    .fontWeight(viewModel.sortType == sort ? .bold : .regular)
-                                    .foregroundColor(viewModel.sortType == sort ? .white : .red)
-                                if viewModel.sortType == sort {
-                                    Image(systemName: viewModel.isAscending ? "arrow.up" : "arrow.down")
-                                        .font(.system(size: 14))
-                                        .foregroundColor(.white)
-                                }
-                            }
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(viewModel.sortType == sort ? Color.red : Color.white)
-                            .cornerRadius(8)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.red, lineWidth: 1)
-                            )
-                        }
+            VStack() {
+                CustomSegmentedControl(
+                    sortType: $viewModel.sortType,
+                    isAscending: $viewModel.isAscending,
+                    onSortChanged: {
+                        viewModel.sortDoctors()
                     }
-                }
-                .padding(.horizontal, 17)
-                .padding(.top, 10)
-                // Сетка докторов
+                )
+                .cornerRadius(100)
+                .clipShape(.rect(cornerRadius: 8))
+                .padding(.horizontal, 10)
+                
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(viewModel.filteredDoctors) { user in
@@ -60,12 +40,19 @@ struct MainView: View {
                 viewModel.fetchData()
             }
             .searchable(text: $viewModel.searchText)
-            .onSubmit(of: .search, {
+            .onSubmit(of: .search) {
                 viewModel.filterDoctor()
-            })
+            }
             .background(Color.lightGray)
             .navigationTitle("Доктора")
+//            .toolbar {
+//                ToolbarItem(placement: .principal) {
+//                    Text("Доктора")
+//                        .font(.title)
+//                        .frame(maxWidth: .infinity, alignment: .center)
+//                        .padding(.top, 40)
+//                }
+//            }
         }
     }
 }
-

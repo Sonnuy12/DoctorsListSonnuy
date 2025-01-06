@@ -22,19 +22,8 @@ class MainViewModel: ObservableObject {
     @Published var alertMessage: String? = nil
     @Published var filteredDoctors: [User] = []
     
-    @Published var sortType: SortType = .price // Текущий тип сортировки
-    @Published var isAscending: Bool = true // Направление сортировки (по умолчанию по возрастанию)
-    
-    func toggleSortDirection(for type: SortType) {
-        if sortType == type {
-            isAscending.toggle()
-            sortDoctors()
-        } else {
-            sortType = type
-            isAscending = true
-            sortDoctors()
-        }
-    }
+    @Published var sortType: SortType = .price
+    @Published var isAscending: Bool = true
     
     var searchText: String = "" {
         didSet {
@@ -82,22 +71,18 @@ class MainViewModel: ObservableObject {
         switch sortType {
         case .price:
             filteredDoctors.sort {
-                isAscending
-                ? ($0.videoChatPrice ?? 0) < ($1.videoChatPrice ?? 0)
-                : ($0.videoChatPrice ?? 0) > ($1.videoChatPrice ?? 0)
+                isAscending ? ($0.videoChatPrice ?? 0) < ($1.videoChatPrice ?? 0) : ($0.videoChatPrice ?? 0) > ($1.videoChatPrice ?? 0)
             }
         case .experience:
             filteredDoctors.sort {
-                isAscending
-                ? $0.workExperience.count < $1.workExperience.count
-                : $0.workExperience.count > $1.workExperience.count
+                isAscending ? ($0.workExperience.count < $1.workExperience.count) : ($0.workExperience.count > $1.workExperience.count)
             }
         case .rating:
             filteredDoctors.sort {
-                isAscending
-                ? ($0.ratings.first?.value ?? 0) < ($1.ratings.first?.value ?? 0)
-                : ($0.ratings.first?.value ?? 0) > ($1.ratings.first?.value ?? 0)
+                isAscending ? ($0.ratings.first?.value ?? 0) < ($1.ratings.first?.value ?? 0) : ($0.ratings.first?.value ?? 0) > ($1.ratings.first?.value ?? 0)
             }
+            
         }
     }
 }
+

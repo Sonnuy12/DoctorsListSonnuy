@@ -9,12 +9,15 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        ScrollView {
-            Text("Hello, ProfileView!")
+        ZStack {
+            Color.lightGray
+                .ignoresSafeArea()
+            
+            VStack {
+                Text("Hello, ProfileView!")
+            }
         }
-        .background(Color.lightGray)
     }
-
 }
 //
 //#Preview {

@@ -11,8 +11,10 @@ import FSCalendar
 struct AppointmentView: View {
     var body: some View {
         FSCalendarView()
-            .edgesIgnoringSafeArea(.bottom) 
+            .edgesIgnoringSafeArea(.bottom)
+            .background(Color.lightGray)
     }
+
 }
 
 struct FSCalendarView: UIViewRepresentable {

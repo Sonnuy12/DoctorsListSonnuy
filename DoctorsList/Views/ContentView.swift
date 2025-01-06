@@ -36,7 +36,7 @@ struct ContentView: View {
                 }
                 .tag("AppointmentView")
             
-            СhatView()
+            ChatView()
                 .tabItem {
                     Image(systemName: "message.fill")
                     Text("Чат")
@@ -51,7 +51,6 @@ struct ContentView: View {
                 }
                 .tag("ProfileView")
         }
-//        .background(Color.indigo)
     }
 }
 

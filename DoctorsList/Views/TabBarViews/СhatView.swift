@@ -7,12 +7,20 @@
 
 import SwiftUI
 
-struct СhatView: View {
+struct ChatView: View {
     var body: some View {
-        Text("Hello, СhatView!")
+        ZStack {
+            Color.lightGray
+                .ignoresSafeArea()
+            
+            VStack {
+                Text("Hello, ChatView!")
+            }
+        }
     }
 }
 
+
 #Preview {
-    СhatView()
+    ChatView()
 }
