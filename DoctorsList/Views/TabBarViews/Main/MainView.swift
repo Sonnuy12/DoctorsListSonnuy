@@ -45,14 +45,6 @@ struct MainView: View {
             }
             .background(Color.lightGray)
             .navigationTitle("Доктора")
-//            .toolbar {
-//                ToolbarItem(placement: .principal) {
-//                    Text("Доктора")
-//                        .font(.title)
-//                        .frame(maxWidth: .infinity, alignment: .center)
-//                        .padding(.top, 40)
-//                }
-//            }
         }
     }
 }

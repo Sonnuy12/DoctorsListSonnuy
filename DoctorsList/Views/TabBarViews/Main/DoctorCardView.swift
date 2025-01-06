@@ -6,8 +6,6 @@
 //
 import SwiftUI
 
-
-
 struct DoctorCardView: View {
     @State var user: User
     @State private var showAlert = false
@@ -39,8 +37,8 @@ struct DoctorCardView: View {
                         Text(user.lastName ?? "Неизвестно")
                             .font(.headline)
                         Text("\(user.firstName ?? "") \(user.patronymic ?? "")")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+                            .font(.headline)
+                        
                     }
                     
                     Spacer()
@@ -86,7 +84,7 @@ struct DoctorCardView: View {
                 }
             }
             .padding()
-            .background(Color(.systemBackground))
+            .background(Color.white)
             .cornerRadius(12)
             .frame(width: 343, height: 224)
         }
