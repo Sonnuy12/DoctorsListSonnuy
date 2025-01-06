@@ -12,7 +12,7 @@ struct DoctorCardView: View {
     @StateObject private var viewModel = MainViewModel()
     
     var body: some View {
-        NavigationLink(destination: UserDetailView(user: user)) {
+        NavigationLink(destination: DoctorDetailView(user: user)) {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
                     if let avatarURL = user.avatar, let url = URL(string: avatarURL) {

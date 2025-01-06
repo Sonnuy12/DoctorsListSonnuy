@@ -11,12 +11,12 @@ struct CustomSegmentedControl: View {
     @Binding var sortType: SortType
     @Binding var isAscending: Bool
     var onSortChanged: () -> Void
-
+    
     var body: some View {
         HStack(spacing: 0) {
             ForEach(0..<SortType.allCases.count, id: \.self) { index in
                 let sort = SortType.allCases[index]
-
+                
                 Button(action: {
                     if sortType == sort {
                         isAscending.toggle()
@@ -31,7 +31,7 @@ struct CustomSegmentedControl: View {
                             .font(.system(size: 12))
                             .fontWeight(sortType == sort ? .bold : .regular)
                             .foregroundColor(sortType == sort ? .white : .gray)
-
+                        
                         if sortType == sort {
                             Image(systemName: isAscending ? "arrow.up" : "arrow.down")
                                 .font(.system(size: 14))
@@ -46,7 +46,7 @@ struct CustomSegmentedControl: View {
                         corners: index == 0 ? [.topLeft, .bottomLeft] : (index == SortType.allCases.count - 1 ? [.topRight, .bottomRight] : [])
                     )
                 }
-
+                
                 if index != SortType.allCases.count - 1 {
                     Divider()
                         .frame(height: 20)
@@ -69,7 +69,7 @@ extension View {
 struct RoundedCorner: Shape {
     var radius: CGFloat = 0
     var corners: UIRectCorner = .allCorners
-
+    
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(
             roundedRect: rect,

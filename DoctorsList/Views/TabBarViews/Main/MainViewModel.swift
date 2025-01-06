@@ -48,7 +48,7 @@ class MainViewModel: ObservableObject {
     }
     
     func handleAppointment(user: User) {
-        if let alert = user.nearestReceptionTime {
+        if let _alert = user.nearestReceptionTime {
             alertMessage = "Вы успешно записались!"
         } else {
             alertMessage = "Нет свободного времени для записи."
